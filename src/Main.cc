@@ -274,37 +274,37 @@ int main(int argc, char *argv[])
             g_graphTraverserForward = 
                 new GraphTraverser(Direction_Forward, false, 
                                    SweepData::getDataSizeInBytes());
-            sweeper = new SweeperSchur();
+            //sweeper = new SweeperSchur();
             break;
         case SweepType_SchurOuter:
             g_graphTraverserForward = 
                 new GraphTraverser(Direction_Forward, false, 
                                    SweepData::getDataSizeInBytes());
-            sweeper = new SweeperSchurOuter();
+            //sweeper = new SweeperSchurOuter();
             break;
         case SweepType_SchurKrylov:
             g_graphTraverserForward = 
                 new GraphTraverser(Direction_Forward, false, 
                                    SweepData::getDataSizeInBytes());
-            sweeper = new SweeperSchurKrylov();
+            //sweeper = new SweeperSchurKrylov();
             break;
         case SweepType_PBJ:
             g_graphTraverserForward = 
                 new GraphTraverser(Direction_Forward, false, 
                                    SweepData::getDataSizeInBytes());
-            sweeper = new SweeperPBJ();
+            //sweeper = new SweeperPBJ();
             break;
         case SweepType_PBJOuter:
             g_graphTraverserForward = 
                 new GraphTraverser(Direction_Forward, false, 
                                    SweepData::getDataSizeInBytes());
-            sweeper = new SweeperPBJOuter();
+            //sweeper = new SweeperPBJOuter();
             break;
         case SweepType_PBJSI:
             g_graphTraverserForward = 
                 new GraphTraverser(Direction_Forward, false, 
                                    SweepData::getDataSizeInBytes());
-            sweeper = new SweeperPBJSI();
+            //sweeper = new SweeperPBJSI();
             break;
         default:
             Insist(false, "Sweep type not recognized.");

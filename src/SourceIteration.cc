@@ -59,10 +59,10 @@ class LHSData
 {
 public:
     PsiData &c_psi;
-    PsiData &c_source;
+    PsiData_t<float> &c_source;
     SweeperAbstract &c_sweeper;
 
-    LHSData(PsiData &psi, PsiData &source, SweeperAbstract &sweeper) :
+    LHSData(PsiData &psi, PsiData_t<float> &source, SweeperAbstract &sweeper) :
     c_psi(psi), c_source(source), c_sweeper(sweeper)    
     {}
 };
@@ -125,10 +125,10 @@ namespace SourceIteration
     L Psi^{n+1} = MS \Phi^n + Q
 */
 template <typename T>
-UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<T> &psi, const PsiData_t<T> &source)
+UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData_t<float> &source)
 {
     // Data for problem
-    PsiData totalSource;
+    PsiData_t<float> totalSource;
     PhiData phiNew;
     PhiData phiOld;
     
@@ -207,10 +207,7 @@ UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<T> &psi, const PsiData_t<T> 
     return iter;
 }
 
-template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<double> &psi, const PsiData_t<double> &source);
-template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<float> &psi, const PsiData_t<double> &source);
-template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<float> &psi, const PsiData_t<float> &source);
-template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<double> &psi, const PsiData_t<float> &source);
+//template UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData_t<float> &source);
 
 /*
     Krylov solver
@@ -218,6 +215,7 @@ template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<double> &psi, const
     Solves (I - DL^{-1}MS) \Phi = DL^{-1} Q.
     L could be the full sweep or a local sweep L_I.
 */
+#ifdef XXX
 UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
 {
     UINT vecSize;
@@ -231,11 +229,11 @@ UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
 
 
     // Create the Krylov solver
-    vecSize = g_nCells * g_nVrtxPerCell * g_nGroups;
+/*    vecSize = g_nCells * g_nVrtxPerCell * g_nGroups;
     LHSData data(psi, tempSource, sweeper);
     KrylovSolver krylovSolver(vecSize, g_errMax, g_iterMax, lhsOperator);
     krylovSolver.setData(&data);
-
+*/
 
     // Setup RHS (b = D L^{-1} Q)
     if (Comm::rank() == 0)
@@ -284,10 +282,10 @@ UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
                clockTime / its);
     }
 
-
     // Return number of iterations
     return its;
 }
+#endif
 }//End namespace SourceIteration
 
 

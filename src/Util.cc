@@ -82,7 +82,8 @@ double diffBetweenGroups(const PsiData &psi)
 /*
     psiToPhi
 */
-void psiToPhi(PhiData &phi, const PsiData &psi) 
+template <typename T>
+void psiToPhi(PhiData &phi, const PsiData_t<T> &psi) 
 {
     phi.setToValue(0.0);
     
@@ -96,11 +97,14 @@ void psiToPhi(PhiData &phi, const PsiData &psi)
     }}}}
 }
 
+template void psiToPhi(PhiData &phi, const PsiData_t<float> &psi); 
+template void psiToPhi(PhiData &phi, const PsiData_t<double> &psi); 
 
 /*
     phiToPsi
 */
-void phiToPsi(const PhiData &phi, PsiData &psi) 
+template <typename T>
+void phiToPsi(const PhiData &phi, PsiData_t<T> &psi) 
 {
     #pragma omp parallel for
     for (UINT cell = 0; cell < g_nCells; ++cell) {
@@ -111,6 +115,8 @@ void phiToPsi(const PhiData &phi, PsiData &psi)
     }}}}
 }
 
+void phiToPsi(const PhiData &phi, PsiData_t<double> &psi); 
+void phiToPsi(const PhiData &phi, PsiData_t<float> &psi);
 
 /*
     calcTotalSource
