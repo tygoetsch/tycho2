@@ -47,8 +47,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace SourceIteration
 {
 
-UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source);
-UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source);
+UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData_t<float> &source);
+//UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source);
 
 } // End namespace
 

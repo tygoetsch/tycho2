@@ -65,8 +65,8 @@ public:
     }
 
 protected:
-    PsiData c_psi;
-    PsiData c_source;
+    PsiData_t<double> c_psi;
+    PsiData_t<float> c_source;
 };
 
 #endif

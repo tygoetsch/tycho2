@@ -1,3 +1,4 @@
+#ifdef XXX
 /*
 Copyright (c) 2016, Los Alamos National Security, LLC
 All rights reserved.
@@ -298,4 +299,4 @@ void SweeperPBJSI::sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound)
 }
 
 
-
+#endif

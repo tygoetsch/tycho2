@@ -124,7 +124,8 @@ namespace SourceIteration
     Fixed point iteration (typically called source iteration)
     L Psi^{n+1} = MS \Phi^n + Q
 */
-UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
+template <typename T>
+UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<T> &psi, const PsiData_t<T> &source)
 {
     // Data for problem
     PsiData totalSource;
@@ -206,6 +207,10 @@ UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
     return iter;
 }
 
+template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<double> &psi, const PsiData_t<double> &source);
+template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<float> &psi, const PsiData_t<double> &source);
+template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<float> &psi, const PsiData_t<float> &source);
+template UINT fixedPoint(SweeperAbstract &sweeper, PsiData_t<double> &psi, const PsiData_t<float> &source);
 
 /*
     Krylov solver

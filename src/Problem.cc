@@ -50,8 +50,9 @@ static const double cubeSize = 100.0;
 /*
     hatSource
 */
+template <typename T>
 static
-void hatSource(PsiData &source)
+void hatSource(PsiData_t<T> &source)
 {
     for(UINT cell = 0; cell < g_nCells; cell++) {
     for(UINT angle = 0; angle < g_nAngles; angle++) {
@@ -81,6 +82,8 @@ void hatSource(PsiData &source)
     }}}
 }
 
+template void hatSource(PsiData_t<double> &source);
+template void hatSource(PsiData_t<float> &source);
 
 namespace Problem
 {
@@ -137,11 +140,13 @@ double hatL2Error(const PsiData &psi)
 /*
     getProblemSource
 */
-void getSource(PsiData &source)
+template <typename T>
+void getSource(PsiData_t<T> &source)
 {
     hatSource(source);
 }
-
+template void getSource(PsiData_t<double> &source);
+template void getSource(PsiData_t<float> &source);
 
 /*
     createCrossSections

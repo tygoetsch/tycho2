@@ -1,3 +1,4 @@
+#ifdef XXX
 /*
 Copyright (c) 2016, Los Alamos National Security, LLC
 All rights reserved.
@@ -61,7 +62,7 @@ struct SchurData
     CommSides *commSides;
     PsiData *psi;
     PsiBoundData *psiBound;
-    PsiData *source;
+    PsiData_t<float> *source;
     
     // Only needed for SchurKrylov
     PhiData *phi;
@@ -227,8 +228,8 @@ void SweeperSchur::solve()
     // Solve
     if (g_useSourceIteration)
         SourceIteration::fixedPoint(*this, c_psi, c_source);
-    else
-        SourceIteration::krylov(*this, c_psi, c_source);
+    //else
+    //    SourceIteration::krylov(*this, c_psi, c_source);
 
     
     // Print data
@@ -347,9 +348,9 @@ void SchurOuter(const double *x, double *b, void *voidData)
     if (g_useSourceIteration)
         its = SourceIteration::fixedPoint(*data->sweeperSchurOuter, *data->psi,
                                           *data->source);
-    else
-        its = SourceIteration::krylov(*data->sweeperSchurOuter, *data->psi,
-                                      *data->source);
+    //else
+    //  its = SourceIteration::krylov(*data->sweeperSchurOuter, *data->psi,
+    //                                *data->source);
     data->sourceIts->push_back(its);
     data->commSides->commSides(*data->psi, *data->psiBound);
 
@@ -462,7 +463,7 @@ void SweeperSchurOuter::solve()
     
     Run the Krylov solver
 */
-void SweeperSchurOuter::sweep(PsiData &psi, const PsiData &source, 
+void SweeperSchurOuter::sweep(PsiData &psi, const PsiData_t<float> &source, 
                               bool zeroPsiBound)
 {
     if (zeroPsiBound) {
@@ -628,3 +629,4 @@ void SweeperSchurKrylov::sweep(PsiData &psi, const PsiData &source,
     Util::sweepLocal(psi, source, c_psiBound);
 }
 
+#endif

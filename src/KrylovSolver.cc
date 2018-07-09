@@ -1,3 +1,4 @@
+#ifdef XXX
 /*
 Copyright (c) 2016, Los Alamos National Security, LLC
 All rights reserved.
@@ -178,4 +179,5 @@ KrylovSolver::~KrylovSolver()
     KSPDestroy(&c_ksp);
 }
 
+#endif
 #endif
