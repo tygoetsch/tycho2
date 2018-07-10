@@ -56,27 +56,28 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     a = angle
     c = cell
 */
-class PsiData {
+template <class T>
+class PsiData_t {
 public:
     
     // Accessors
-    double& operator()(size_t g, size_t v, size_t a, size_t c) 
+    T& operator()(size_t g, size_t v, size_t a, size_t c) 
     {
         return c_data[index(g,v,a,c)];
     }
     
-    const double& operator()(size_t g, size_t v, size_t a, size_t c) const 
+    const T& operator()(size_t g, size_t v, size_t a, size_t c) const 
     {
         return c_data[index(g,v,a,c)];
     }
     
-    double& operator[](size_t i)
+    T& operator[](size_t i)
     {
         Assert(i < size());
         return c_data[i];
     }
 
-    const double& operator[](size_t i) const
+    const T& operator[](size_t i) const
     {
         Assert(i < size());
         return c_data[i];
@@ -91,18 +92,18 @@ public:
 
 
     // Constructor
-    PsiData()
+    PsiData_t()
     {
         c_ng = g_nGroups;
         c_nv = g_nVrtxPerCell;
         c_na = g_nAngles;
         c_nc = g_nCells;
-        c_data = new double[size()];
+        c_data = new T[size()];
         setToValue(0.0);
         c_ownData = true;
     }
 
-    PsiData(double *data)
+    PsiData_t(T *data)
     {
         c_ng = g_nGroups;
         c_nv = g_nVrtxPerCell;
@@ -114,12 +115,12 @@ public:
     
 
     // Don't allow copy constructor or assignment operator
-    PsiData(const PsiData &other) = delete;
-    PsiData & operator= (const PsiData &other) = delete;
+    PsiData_t(const PsiData_t &other) = delete;
+    PsiData_t & operator= (const PsiData_t &other) = delete;
     
 
     //Destructor
-    ~PsiData()
+    ~PsiData_t()
     {
         if (c_data != NULL && c_ownData) {
             delete[] c_data;
@@ -129,7 +130,7 @@ public:
     
     
     // Set constant value
-    void setToValue(double value)
+    void setToValue(T value)
     {
         if(c_data == NULL)
             return;
@@ -147,7 +148,7 @@ public:
 // Private    
 private:
     size_t c_ng, c_nv, c_na, c_nc;
-    double *c_data;
+    T *c_data;
     bool c_ownData;
 
 
@@ -370,6 +371,6 @@ private:
     }
 };
 
-
-
+typedef PsiData_t<double> PsiData;
+#include "PsiData.cct"
 #endif

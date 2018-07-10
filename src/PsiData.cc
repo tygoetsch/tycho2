@@ -59,7 +59,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     CellData Format:
     double[]: psi(:, :, :, global cell index)
 */
-void PsiData::writeToFile(const std::string &filename)
+template <typename T>
+void PsiData_t<T>::writeToFile(const std::string &filename)
 {
     MPI_File file;
     char outputName[32] = {
