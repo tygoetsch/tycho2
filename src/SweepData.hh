@@ -176,7 +176,7 @@ public:
 private:
     PsiData &c_psi;
     PsiBoundData &c_psiBound;
-    const PsiData &c_source;
+    const PsiData_t<float> &c_source;
     const Mat2<UINT> &c_priorities;
     std::vector<Mat2<double>> c_localFaceData;
     std::vector<Mat2<double>> c_localSource;
