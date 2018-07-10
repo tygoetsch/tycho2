@@ -243,7 +243,7 @@ void SweeperSchur::solve()
     
     Run the Krylov solver
 */
-void SweeperSchur::sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound)
+void SweeperSchur::sweep(PsiData &psi, const PsiData_t<float> &source, bool zeroPsiBound)
 {
     UNUSED_VARIABLE(zeroPsiBound);
     
@@ -462,7 +462,7 @@ void SweeperSchurOuter::solve()
     
     Run the Krylov solver
 */
-void SweeperSchurOuter::sweep(PsiData &psi, const PsiData &source, 
+void SweeperSchurOuter::sweep(PsiData &psi, const PsiData_t<float> &source, 
                               bool zeroPsiBound)
 {
     if (zeroPsiBound) {
@@ -495,7 +495,7 @@ void SchurKrylov(const double *x, double *b, void *voidData)
     CommSides &commSides = *(data->commSides);
     PsiData &psi = *(data->psi);
     PsiBoundData &psiBound = *(data->psiBound);
-    PsiData &source = *(data->source);
+    PsiData_t<float> &source = *(data->source);
     PhiData &phi = *(data->phi);
 
 
@@ -621,7 +621,7 @@ void SweeperSchurKrylov::solve()
 /*
     sweep
 */
-void SweeperSchurKrylov::sweep(PsiData &psi, const PsiData &source, 
+void SweeperSchurKrylov::sweep(PsiData &psi, const PsiData_t<float> &source, 
                                bool zeroPsiBound)
 {
     UNUSED_VARIABLE(zeroPsiBound);

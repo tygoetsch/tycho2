@@ -115,7 +115,7 @@ void phiToPsi(const PhiData &phi, PsiData &psi)
 /*
     calcTotalSource
 */
-void calcTotalSource(const PsiData &source, const PhiData &phi, 
+void calcTotalSource(const PsiData_t<float> &source, const PhiData &phi, 
                      PsiData &totalSource)
 {
     #pragma omp parallel for
@@ -135,7 +135,7 @@ void calcTotalSource(const PsiData &source, const PhiData &phi,
 
     Solves L_I Psi = L_B Psi_B + Q
 */
-void sweepLocal(PsiData &psi, const PsiData &source, PsiBoundData &psiBound)
+void sweepLocal(PsiData &psi, const PsiData_t<float> &source, PsiBoundData &psiBound)
 {
     Mat2<UINT> priorities(g_nCells, g_nAngles);
     const UINT maxComputePerStep = std::numeric_limits<uint64_t>::max();

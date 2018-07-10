@@ -51,7 +51,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 class SweeperPBJ : public SweeperAbstract
 {
 public:
-    void sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound);
+    void sweep(PsiData &psi, const PsiData_t<float> &source, bool zeroPsiBound);
     void solve();
     
 private:
@@ -70,7 +70,7 @@ class SweeperPBJOuter : public SweeperAbstract
 {
 public:
     void solve();
-    void sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound);
+    void sweep(PsiData &psi, const PsiData_t<float> &source, bool zeroPsiBound);
 
 private:
     CommSides c_commSides;
@@ -88,7 +88,7 @@ class SweeperPBJSI : public SweeperAbstract
 {
 public:
     void solve();
-    void sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound);
+    void sweep(PsiData &psi, const PsiData_t<float> &source, bool zeroPsiBound);
 
 private:
     CommSides c_commSides;

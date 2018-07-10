@@ -62,7 +62,7 @@ public:
     PsiData &c_source;
     SweeperAbstract &c_sweeper;
 
-    LHSData(PsiData &psi, PsiData &source, SweeperAbstract &sweeper) :
+    LHSData(PsiData &psi, PsiData_t<float> &source, SweeperAbstract &sweeper) :
     c_psi(psi), c_source(source), c_sweeper(sweeper)    
     {}
 };
@@ -124,7 +124,7 @@ namespace SourceIteration
     Fixed point iteration (typically called source iteration)
     L Psi^{n+1} = MS \Phi^n + Q
 */
-UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
+UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData_t<float> &source)
 {
     // Data for problem
     PsiData totalSource;
@@ -213,7 +213,7 @@ UINT fixedPoint(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
     Solves (I - DL^{-1}MS) \Phi = DL^{-1} Q.
     L could be the full sweep or a local sweep L_I.
 */
-UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData &source)
+UINT krylov(SweeperAbstract &sweeper, PsiData &psi, const PsiData_t<float> &source)
 {
     UINT vecSize;
     int its;

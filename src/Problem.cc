@@ -51,7 +51,7 @@ static const double cubeSize = 100.0;
     hatSource
 */
 static
-void hatSource(PsiData &source)
+void hatSource(PsiData_t<float> &source)
 {
     for(UINT cell = 0; cell < g_nCells; cell++) {
     for(UINT angle = 0; angle < g_nAngles; angle++) {
@@ -80,7 +80,6 @@ void hatSource(PsiData &source)
         }
     }}}
 }
-
 
 namespace Problem
 {
@@ -137,11 +136,10 @@ double hatL2Error(const PsiData &psi)
 /*
     getProblemSource
 */
-void getSource(PsiData &source)
+void getSource(PsiData_t<float> &source)
 {
     hatSource(source);
 }
-
 
 /*
     createCrossSections

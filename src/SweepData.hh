@@ -57,7 +57,7 @@ class SweepData : public TraverseData
 {
 public:
     
-    SweepData(PsiData &psi, const PsiData &source, PsiBoundData &psiBound,  
+    SweepData(PsiData &psi, const PsiData_t<float> &source, PsiBoundData &psiBound,  
                const Mat2<UINT> &priorities)
     : c_psi(psi), c_psiBound(psiBound), c_source(source), 
       c_priorities(priorities), c_localFaceData(g_nThreads),

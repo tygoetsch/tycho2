@@ -126,7 +126,7 @@ void SweeperPBJOuter::solve()
 /*
     sweep
 */
-void SweeperPBJOuter::sweep(PsiData &psi, const PsiData &source, 
+void SweeperPBJOuter::sweep(PsiData &psi, const PsiData_t<float> &source, 
                             bool zeroPsiBound)
 {
     if (zeroPsiBound) {
@@ -165,7 +165,7 @@ void SweeperPBJ::solve()
 /*
     sweep
 */
-void SweeperPBJ::sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound)
+void SweeperPBJ::sweep(PsiData &psi, const PsiData_t<float> &source, bool zeroPsiBound)
 {
     UNUSED_VARIABLE(zeroPsiBound);
 
@@ -291,7 +291,7 @@ void SweeperPBJSI::solve()
 /*
     sweep
 */
-void SweeperPBJSI::sweep(PsiData &psi, const PsiData &source, bool zeroPsiBound)
+void SweeperPBJSI::sweep(PsiData &psi, const PsiData_t<float> &source, bool zeroPsiBound)
 {
     UNUSED_VARIABLE(zeroPsiBound);
     Util::sweepLocal(psi, source, c_psiBound);

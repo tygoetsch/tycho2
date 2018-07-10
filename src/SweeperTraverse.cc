@@ -79,7 +79,7 @@ void SweeperTraverse::solve()
     
     Sweep by traversing graph.
 */
-void SweeperTraverse::sweep(PsiData &psi, const PsiData &source, 
+void SweeperTraverse::sweep(PsiData &psi, const PsiData_t<float> &source, 
                             bool zeroPsiBound)
 {
     UNUSED_VARIABLE(zeroPsiBound);
