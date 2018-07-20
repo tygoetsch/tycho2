@@ -90,14 +90,17 @@ void PsiData::writeToFile(const std::string &filename)
         Comm::writeDoublesAt(file, 0, header, 8);
     }
 
-
+	std::vector<double> dbldata(c_na*c_ng*c_nv);
     // Write data one cell at a time
     for (size_t cell = 0; cell < c_nc; cell++) {
         int dataSize = c_na * c_ng * c_nv;
         uint64_t globalCell = g_tychoMesh->getLGCell(cell);
         uint64_t offset = 8 + globalCell * dataSize;
-        double *data = &c_data[index(0, 0, 0, cell)];
-        Comm::writeDoublesAt(file, offset, data, dataSize);
+        float *data = &c_data[index(0, 0, 0, cell)];
+	for(int i=0; i< dataSize; i++){
+		dbldata[i] = (double)data[i];
+	}
+        Comm::writeDoublesAt(file, offset, dbldata.data(), dataSize);
     }
 
 

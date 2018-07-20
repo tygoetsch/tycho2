@@ -60,23 +60,23 @@ class PsiData {
 public:
     
     // Accessors
-    double& operator()(size_t g, size_t v, size_t a, size_t c) 
+    float& operator()(size_t g, size_t v, size_t a, size_t c) 
     {
         return c_data[index(g,v,a,c)];
     }
     
-    const double& operator()(size_t g, size_t v, size_t a, size_t c) const 
+    const float& operator()(size_t g, size_t v, size_t a, size_t c) const 
     {
         return c_data[index(g,v,a,c)];
     }
     
-    double& operator[](size_t i)
+    float& operator[](size_t i)
     {
         Assert(i < size());
         return c_data[i];
     }
 
-    const double& operator[](size_t i) const
+    const float& operator[](size_t i) const
     {
         Assert(i < size());
         return c_data[i];
@@ -97,12 +97,12 @@ public:
         c_nv = g_nVrtxPerCell;
         c_na = g_nAngles;
         c_nc = g_nCells;
-        c_data = new double[size()];
+        c_data = new float[size()];
         setToValue(0.0);
         c_ownData = true;
     }
 
-    PsiData(double *data)
+    PsiData(float *data)
     {
         c_ng = g_nGroups;
         c_nv = g_nVrtxPerCell;
@@ -129,7 +129,7 @@ public:
     
     
     // Set constant value
-    void setToValue(double value)
+    void setToValue(float value)
     {
         if(c_data == NULL)
             return;
@@ -147,7 +147,7 @@ public:
 // Private    
 private:
     size_t c_ng, c_nv, c_na, c_nc;
-    double *c_data;
+    float *c_data;
     bool c_ownData;
 
 
